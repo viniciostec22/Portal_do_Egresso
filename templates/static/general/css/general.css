@@ -1,0 +1,66 @@
+@import url(./root.css);
+
+/*Barra de navegação*/
+.navbar-collapse{
+  flex-grow: inherit;
+}
+.nav-main{
+  background-color:var(--main-color);
+  color: #fff
+}
+
+.navbar-light .navbar-nav .nav-link{
+  font-size: 18px;
+  color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+  font-size: 18px;
+  transition: 0.5s;
+}
+
+.navbar-light .navbar-brand:hover{
+  color: #fff;
+}
+
+.navbar-light .navbar-brand{
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.brand{
+  font-size: 14px;
+  font-weight: lighter;
+  margin-bottom: 0px;
+}
+/*Carrossel*/
+/*slaider*/
+.main-slider{
+  height: 80vh;
+}
+
+.carousel-item {
+  height: 80vh;
+}
+
+ .carousel-caption {
+  top: 30%;
+}
+
+.carousel-caption h5 {
+  font-size: 50px;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.carousel-caption p {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 100px;
+  color: #000;
+}
+.carousel-indicators [data-bs-target]{
+  background-color:red;
+}
+
