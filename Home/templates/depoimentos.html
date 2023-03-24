@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static '/home/css/depoimentos.css' %}">
+{% endblock head %}
+{% block title %}Depoimentos{% endblock title %}
+{% block content %}
+{% include 'components/__Depoimentos.html' %}
+  
+{% endblock content %}

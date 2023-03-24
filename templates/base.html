@@ -8,16 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% bootstrap_css %}
   {% bootstrap_javascript %}
- 
   <link rel="stylesheet" href="{% static '/general/css/general.css' %}">
-  {% block head %}{% endblock head %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sua-integridade-aqui" crossorigin="anonymous">
+  {% block head %}
+  
+  {% endblock head %}
   <title>{% block title %} {% endblock title %}</title>
 </head>
 <body>
-  {% include 'components/__Header.html' %}
+ {% include 'components/__Header.html' %}
  {% block content %}
  
  {% endblock content %}
- 
+ {% include 'components/__Footer.html' %}
 </body>
 </html>

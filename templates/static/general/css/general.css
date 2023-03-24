@@ -153,8 +153,6 @@
   
 }
 .cadastro .col .button:hover{
-  
- 
   background-color: #fff;
   border: solid 2px var(--main-color);
   color: var(--main-color);
