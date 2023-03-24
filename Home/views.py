@@ -5,4 +5,5 @@ def Home(request):
   return render(request, 'home.html')
 
 def Depoimentos(request):
-  return render(request, 'depoimentos.html')
+  cards = [1,2,3,4]
+  return render(request, 'depoimentos.html', {'cards':cards})

@@ -3,7 +3,7 @@
 .filtro{
   margin-bottom: 30px;
   height: 15vh;
-  background-color: var(--light-color);
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,3 +45,83 @@
 }
 
 /*Depoimentos*/
+.depoimentos{
+  align-items: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+.depoimentos .col-sm-6{
+  margin-bottom: 30px;
+}
+.card{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  
+ 
+}
+
+.foto img{
+  border-radius: 50px;
+  height: 15vh;
+  width: 15vh;
+  margin: 15px;
+  display: block;
+  
+}
+.nome{
+  margin-top: 15px;
+  font-size: 26;
+}
+
+
+.curso{
+  color: #696969
+}
+.caixa-de-texto{
+  font-size: 14px;
+}
+.depoimentos .button{
+  margin-bottom: 30px;
+  
+}
+.btn-center {
+  display: block;
+  margin: auto;
+}
+
+/*novo depoimento*/
+.depoimentos-form{
+  background-color:var(--light-color) ;
+  padding: 30px;
+}
+
+.form-depoimentos{
+  background-color: var(--background-color);
+  width: 50%;
+  border-radius: 20px;
+  
+}
+
+.form-depoimentos form{
+  padding: 20px;
+}
+.depoimentos-form .text{
+  margin-bottom: 20px;
+}
+.depoimentos-form .text p{
+  font-size: 16px;
+}
+.depoimentos-form h2{
+  text-align: center;
+  font-size: 42px;
+}
+.depoimentos-form p{
+  text-align: center;
+  
+}
+.form-depoimentos .button{
+  margin-top: 15px;
+}

@@ -1,24 +1,105 @@
 {% load static %}
-<div class="container container-titulo">
-  <div class="title">
-    <p >DEPOIMENTOS</p>
-    <hr class="bg-hr">
+<div class="container">
+  <div class="container container-titulo">
+    <div class="title">
+      <p >DEPOIMENTOS</p>
+      <hr class="bg-hr">
+    </div>
+  </div>
+  {% comment %} filtro {% endcomment %}
+  <div class="container filtro">
+   <label for="">Filtro:</label>
+    <select class="form-select select" aria-label="Default select example">
+      <option selected>Selecione o filtro</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+    <button type="submit" class="btn btn-primary button">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+  
+  <div class="container depoimentos">
+    <div class="row">
+      {% for card in cards %}
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="foto">
+            <img src="{% static 'img/default-user.png' %}" alt="">
+          </div>
+          <div>
+            <h2 class="nome">Vinicios Matheus</h2>
+            <p class="detalhes">Graduação | <span>Tecnólogo</span> <br>
+              <span class="curso">Gestão em tecnologia da Informação</span></p>
+            <p class="caixa-de-texto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+              when an unknown printer took a galley</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary button btn-center">
+        Mostrar mais
+      </button>
+    </div>
   </div>
 </div>
-
-<div class="container filtro">
- <label for="">Filtro:</label>
-  <select class="form-select select" aria-label="Default select example">
-    <option selected>Selecione o filtro</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-  <button type="submit" class="btn btn-primary button">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-</div>
-
-<div class="container depoimentos">
-
+{% comment %} formulario de depoimentos {% endcomment %}
+<div class="container-fluid depoimentos-form">
+  <div class="container text">
+    <h2>Enviar Depoimento</h2>
+    <p>
+      Participe do nosso Portal de Egressos e ajude-nos a construir um espaço único
+      para você e seus colegas que já passaram pelo IF Baiano!
+    </p>
+    <p>
+      Sua contribuição é essencial para enriquecermos este espaço com informações 
+      valiosas e depoimentos inspiradores. Conte-nos sua história no IF Baiano e 
+      como sua formação acadêmica contribuiu para o seu sucesso profissional. 
+      Juntos, podemos fortalecer a rede de ex-alunos e continuar a construir uma 
+      comunidade de sucesso!
+    </p>
+  </div>
+  <div class="container form-depoimentos">
+    <form class="">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="nome" name="nome"  placeholder="Nome" required>
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" id="email" name="email"  placeholder="Email" required>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Envie uma foto(opcional)</label><br>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+      <div class="mb-3">
+        <select class="form-control form-select  ">
+          <option selected>Nivel do Curso</option>
+          <option value="">Graduação</option>
+          <option value="">Tecnico integrado</option>
+          <option value="">tecnico subsequente</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="email" name="turma"  placeholder="Turma "required>
+      </div>
+      <div class="mb-3">
+        <select class="form-control form-select  ">
+          <option selected>Curso</option>
+          <option value="">GTI</option>
+          <option value="">Agronomia</option>
+          <option value="">Tec. informatica subsequente</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Seu depoimento"></textarea>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary button">Enviar</button>
+      </div>
+    </form>
+  </div>
 </div>
