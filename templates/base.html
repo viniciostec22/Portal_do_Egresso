@@ -16,10 +16,14 @@
   <title>{% block title %} {% endblock title %}</title>
 </head>
 <body>
- {% include 'components/__Header.html' %}
- {% block content %}
+ <div class="wrapper">
+  <div class="content">
+    {% include 'components/__Header.html' %}
+    {% block content %}
  
- {% endblock content %}
- {% include 'components/__Footer.html' %}
+    {% endblock content %}
+    {% include 'components/__Footer.html' %}
+  </div>
+ </div>
 </body>
 </html>

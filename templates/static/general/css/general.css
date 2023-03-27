@@ -1,5 +1,12 @@
 @import url(./root.css);
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+
+
 /*Barra de navegação*/
 .navbar-collapse{
   flex-grow: inherit;
@@ -78,6 +85,7 @@
   margin-bottom: 30px;
 }
 .container-titulo{
+  text-transform: uppercase;
   display: flex;
   font-size: 36px;
   font-weight: bolder;
@@ -159,9 +167,14 @@
   transition: 0.5s;
 }
 
+/*rodape */
 
 .footer{
   background-color: var(--main-color);
+  
+  
+ 
+
 }
 
 .footer .container .row div{

@@ -7,3 +7,6 @@ def Home(request):
 def Depoimentos(request):
   cards = [1,2,3,4]
   return render(request, 'depoimentos.html', {'cards':cards})
+
+def objetivos(request):
+  return render(request, 'objetivos.html')
