@@ -2,13 +2,13 @@
 <div class="container">
   <div class="container container-titulo">
     <div class="title">
-      <p >DEPOIMENTOS</p>
+      <p>DEPOIMENTOS</p>
       <hr class="bg-hr">
     </div>
   </div>
   {% comment %} filtro {% endcomment %}
   <div class="container filtro">
-   <label for="">Filtro:</label>
+    <label for="">Filtro:</label>
     <select class="form-select select" aria-label="Default select example">
       <option selected>Selecione o filtro</option>
       <option value="1">1</option>
@@ -19,7 +19,7 @@
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
   </div>
-  
+
   <div class="container depoimentos">
     <div class="row">
       {% for card in cards %}
@@ -31,9 +31,10 @@
           <div>
             <h2 class="nome">Vinicios Matheus</h2>
             <p class="detalhes">Graduação | <span>Tecnólogo</span> <br>
-              <span class="curso">Gestão em tecnologia da Informação</span></p>
-            <p class="caixa-de-texto">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+              <span class="curso">Gestão em tecnologia da Informação</span>
+            </p>
+            <p class="caixa-de-texto">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
               when an unknown printer took a galley</p>
           </div>
         </div>
@@ -56,20 +57,20 @@
       para você e seus colegas que já passaram pelo IF Baiano!
     </p>
     <p>
-      Sua contribuição é essencial para enriquecermos este espaço com informações 
-      valiosas e depoimentos inspiradores. Conte-nos sua história no IF Baiano e 
-      como sua formação acadêmica contribuiu para o seu sucesso profissional. 
-      Juntos, podemos fortalecer a rede de ex-alunos e continuar a construir uma 
+      Sua contribuição é essencial para enriquecermos este espaço com informações
+      valiosas e depoimentos inspiradores. Conte-nos sua história no IF Baiano e
+      como sua formação acadêmica contribuiu para o seu sucesso profissional.
+      Juntos, podemos fortalecer a rede de ex-alunos e continuar a construir uma
       comunidade de sucesso!
     </p>
   </div>
   <div class="container form-depoimentos">
-    <form class="">
+    <form class=""> {% csrf_token %}
       <div class="mb-3">
-        <input type="text" class="form-control" id="nome" name="nome"  placeholder="Nome" required>
+        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
       </div>
       <div class="mb-3">
-        <input type="email" class="form-control" id="email" name="email"  placeholder="Email" required>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Envie uma foto(opcional)</label><br>
@@ -84,7 +85,7 @@
         </select>
       </div>
       <div class="mb-3">
-        <input type="text" class="form-control" id="email" name="turma"  placeholder="Turma "required>
+        <input type="text" class="form-control" id="email" name="turma" placeholder="Turma " required>
       </div>
       <div class="mb-3">
         <select class="form-control form-select  ">
@@ -95,7 +96,21 @@
         </select>
       </div>
       <div class="form-group">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Seu depoimento"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+          placeholder="Seu depoimento"></textarea>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Caso o meu testemunho seja escolhido, concordo em autorizar a sua publicação no site de egressos so IFBaino,
+          juntamente com a utilização da minha imagem.
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+          Li aceito a <a href="#">Politica de Privacidade</a>
+        </label>
       </div>
       <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-primary button">Enviar</button>
