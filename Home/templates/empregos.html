@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static '/empregos_carreira/css/empregos-carreira.css' %}">
+{% endblock head %}
+{% block title %}Empregos e carreira{% endblock title %}
+{% block content %}
+<div class="container-fluid block-empregos">
+  <div class="container container-titulo">
+    <div class="title">
+      <p>sobre</p>
+      <hr class="bg-hr">
+    </div>
+  </div>
+  <div class="container">
+    <p id="sobre">
+      There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some
+      form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a
+      passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All
+      the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first
+      true generator on the Internet. It uses a dictionary of over 200
+    </p>
+    <div class="d-flex justify-content-center">
+      <a href="#" class="btn btn-primary">ALUNO/EGRESSO <br> <span>cadastre o seu curriculo</span></a>
+      <a href="#" class="btn btn-primary">EMPRESA <br> <span>Inclua aqui sua vaga</span></a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

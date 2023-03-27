@@ -1,0 +1,24 @@
+
+.block-empregos .container{
+  justify-content: center;
+  align-items: center;
+  max-width: 70%;
+}
+
+#sobre{
+  text-align: justify;
+
+}
+
+.justify-content-center a{
+  margin: 30px;
+  background-color: var(--main-color);
+  border-color: solid 2px var(--main-color);
+}
+
+.justify-content-center a:hover{
+  background-color: var(--light-color);
+  border-color: solid 2px var(--main-color);
+  transition: 0.5s;
+  color: var(--main-color);
+}

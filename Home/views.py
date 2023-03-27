@@ -10,3 +10,6 @@ def Depoimentos(request):
 
 def objetivos(request):
   return render(request, 'objetivos.html')
+
+def empregos_carrera(request):
+  return render(request, 'empregos.html')
