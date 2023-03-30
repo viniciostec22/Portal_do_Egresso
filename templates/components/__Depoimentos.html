@@ -65,7 +65,7 @@
     </p>
   </div>
   <div class="container form-depoimentos">
-    <form class=""> {% csrf_token %}
+    <form class="" method="POST" action=""> {% csrf_token %}
       <div class="mb-3">
         <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
       </div>
@@ -102,12 +102,12 @@
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
-          Caso o meu testemunho seja escolhido, concordo em autorizar a sua publicação no site de egressos so IFBaino,
+          Caso o meu testemunho seja escolhido, concordo em autorizar a sua publicação no site de egressos do IFBaino,
           juntamente com a utilização da minha imagem.
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
         <label class="form-check-label" for="flexCheckChecked">
           Li aceito a <a href="#">Politica de Privacidade</a>
         </label>
