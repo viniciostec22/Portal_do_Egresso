@@ -1,11 +1,13 @@
 from django.shortcuts import render, HttpResponse
+from .models import Depoimento
 
 # Create your views here.
 def Home(request):
   return render(request, 'home.html')
 
 def Depoimentos(request):
-  cards = [1,2,3,4]
+  depoimentos = Depoimento.objects.filter(aprovado = True)
+  cards = depoimentos
   return render(request, 'depoimentos.html', {'cards':cards})
 
 def objetivos(request):

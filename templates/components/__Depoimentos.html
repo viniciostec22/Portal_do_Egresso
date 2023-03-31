@@ -26,16 +26,14 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="foto">
-            <img src="{% static 'img/default-user.png' %}" alt="">
+            <img src="{% if not card.foto %}{% static 'img/default-user.png' %}{% else %}{{card.foto.url}}{% endif %}" alt="">
           </div>
           <div>
-            <h2 class="nome">Vinicios Matheus</h2>
-            <p class="detalhes">Graduação | <span>Tecnólogo</span> <br>
-              <span class="curso">Gestão em tecnologia da Informação</span>
+            <h2 class="nome">{{card.nome}}</h2>
+            <p class="detalhes">{{card.nivel}} | <span>{{card.curso}}</span> <br>
+              <span class="curso">Turma: {{card.turma}}</span>
             </p>
-            <p class="caixa-de-texto">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley</p>
+            <p class="caixa-de-texto">{{card.depoimento}}</p>
           </div>
         </div>
       </div>

@@ -55,6 +55,7 @@
 }
 .card{
   display: flex;
+  padding-right: 15px;
   align-items: center;
   flex-direction: row;
   background-color: var(--background-color);
@@ -95,7 +96,9 @@
 /*novo depoimento*/
 .depoimentos-form{
   background-color:var(--light-color) ;
-  padding: 30px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  
 }
 
 .form-depoimentos{

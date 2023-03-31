@@ -134,7 +134,7 @@ html, body {
 /*cadastro*/
 
 .cadastro{
-  height: 90vh;
+  margin-bottom: 50px;
 }
 
 .cadastro .col h1{
@@ -156,6 +156,9 @@ html, body {
   padding: 30px;
   background-color: var(--background-color);
   border-radius: 30px;
+}
+.justify-content-center{
+  margin-top: 15px;
 }
 .cadastro .col .button{
   background-color: var(--main-color);

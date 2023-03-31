@@ -1,3 +1,11 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+
+class DepoimentoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'curso', 'data_criacao', 'depoimento', 'aprovado')
+    list_filter = ('aprovado',)
+    list_editable = ('aprovado',)
+    list_display_links = ('nome',)
+
+admin.site.register(Depoimento, DepoimentoAdmin)
