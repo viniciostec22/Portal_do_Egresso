@@ -52,6 +52,7 @@
 }
 .depoimentos .col-sm-6{
   margin-bottom: 30px;
+  
 }
 .card{
   display: flex;
@@ -60,6 +61,7 @@
   flex-direction: row;
   background-color: var(--background-color);
   border-radius: 10px;
+  height: 35vh;
   
  
 }

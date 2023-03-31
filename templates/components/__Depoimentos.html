@@ -31,7 +31,7 @@
           <div>
             <h2 class="nome">{{card.nome}}</h2>
             <p class="detalhes">{{card.nivel}} | <span>{{card.curso}}</span> <br>
-              <span class="curso">Turma: {{card.turma}}</span>
+              <span class="curso">Turma: {{card.turma}} </span>
             </p>
             <p class="caixa-de-texto">{{card.depoimento}}</p>
           </div>
@@ -49,6 +49,7 @@
 {% comment %} formulario de depoimentos {% endcomment %}
 <div class="container-fluid depoimentos-form">
   <div class="container text">
+    
     <h2>Enviar Depoimento</h2>
     <p>
       Participe do nosso Portal de Egressos e ajude-nos a construir um espaço único
@@ -63,7 +64,17 @@
     </p>
   </div>
   <div class="container form-depoimentos">
-    <form class="" method="POST" action=""> {% csrf_token %}
+    {% if messages %}
+      <br>
+      {% for message in messages %}
+          <div class="alert {{message.tags}} alert-dismissible fade show ">                    
+              {{message}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+  
+      {% endfor %}
+  {% endif %}
+    <form method="POST" action="{% url 'depoimentos' %}" enctype="multipart/form-data"> {% csrf_token %}
       <div class="mb-3">
         <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
       </div>
@@ -72,40 +83,39 @@
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Envie uma foto(opcional)</label><br>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <input type="file" encty class="form-control-file" id="exampleFormControlFile1" name="foto">
       </div>
       <div class="mb-3">
-        <select class="form-control form-select  ">
+        <select class="form-control form-select  " name="nivel">
           <option selected>Nivel do Curso</option>
-          <option value="">Graduação</option>
-          <option value="">Tecnico integrado</option>
-          <option value="">tecnico subsequente</option>
+          {% for nivel in nivel_curso %}
+            <option value="{{nivel.id}}">{{nivel.nivel_curso}}</option>
+          {% endfor %}
         </select>
       </div>
       <div class="mb-3">
         <input type="text" class="form-control" id="email" name="turma" placeholder="Turma " required>
       </div>
       <div class="mb-3">
-        <select class="form-control form-select  ">
+        <select class="form-control form-select  " name="curso">
           <option selected>Curso</option>
-          <option value="">GTI</option>
-          <option value="">Agronomia</option>
-          <option value="">Tec. informatica subsequente</option>
+          {% for curso in cursos %}
+            <option value="{{curso.id}}">{{curso.curso}}</option>
+          {% endfor %}
         </select>
       </div>
       <div class="form-group">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-          placeholder="Seu depoimento"></textarea>
+        <textarea class="form-control" id="depoimento" name="depoimento" rows="5" placeholder="Seu depoimento" required></textarea>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="autorizacao">
         <label class="form-check-label" for="flexCheckDefault">
           Caso o meu testemunho seja escolhido, concordo em autorizar a sua publicação no site de egressos do IFBaino,
           juntamente com a utilização da minha imagem.
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="politica_privacidade">
         <label class="form-check-label" for="flexCheckChecked">
           Li aceito a <a href="#">Politica de Privacidade</a>
         </label>

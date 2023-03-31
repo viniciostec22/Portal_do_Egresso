@@ -125,6 +125,9 @@ html, body {
   text-transform: uppercase;
   text-align: justify;
 }
+body > div > div > div.container-fluid.depoimentos-form > div.container.text > div{
+  font-size: 12px;
+}
 .text-regular{
   font-size: 20px;
   color: var(--main-color);
