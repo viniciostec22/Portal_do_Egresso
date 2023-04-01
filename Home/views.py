@@ -25,24 +25,24 @@ def Depoimentos(request):
         depoimento = request.POST.get('depoimento')
         autorizacao_publicacao = request.POST.get('autorizacao')  
         aceite_politica_privacidade = request.POST.get('politica_privacidade')
-        #validação campos em branco. 
-        if not nome or not email or not nivel or not turma or not curso or not depoimento:
-          messages.add_message(request, constants.ERROR, 'Campos obrigatorios em branco.')
-          return redirect('depoimentos')
+        
+        print('1',aceite_politica_privacidade)
+        print('2', autorizacao_publicacao)
+        
+
         #validação termos 
-        if not autorizacao_publicacao :
-          autorizacao_publicacao = False
+        if autorizacao_publicacao != '1':
           messages.add_message(request, constants.ERROR, 'Você precisa aceitar os termos e condições.')
           return redirect('depoimentos')
         else:
           autorizacao_publicacao = True
-         
-        if not aceite_politica_privacidade:
-          aceite_politica_privacidade = False
-          messages.add_message(request, constants.ERROR, 'Você precisa aceitar os termos e condições.')
-          return redirect('depoimentos')
+
+        if aceite_politica_privacidade != '1':
+            messages.add_message(request, constants.ERROR, 'Você precisa aceitar os termos e condições.')
+            return redirect('depoimentos')
         else:
           aceite_politica_privacidade = True
+
         
         #Cria uma instância do modelo Depoimento com os dados recebidos
         novo_depoimento = Depoimento(
