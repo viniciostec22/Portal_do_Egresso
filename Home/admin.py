@@ -3,7 +3,7 @@ from .models import *
 
 
 class DepoimentoAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'curso', 'data_criacao', 'depoimento', 'aprovado')
+    list_display = ('nome', 'curso','turma', 'data_criacao', 'depoimento', 'aprovado')
     list_filter = ('aprovado',)
     list_editable = ('aprovado',)
     list_display_links = ('nome',)

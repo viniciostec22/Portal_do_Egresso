@@ -24,11 +24,7 @@ def Depoimentos(request):
         curso = request.POST.get('curso')
         depoimento = request.POST.get('depoimento')
         autorizacao_publicacao = request.POST.get('autorizacao')  
-        aceite_politica_privacidade = request.POST.get('politica_privacidade')
-        
-        print('1',aceite_politica_privacidade)
-        print('2', autorizacao_publicacao)
-        
+        aceite_politica_privacidade = request.POST.get('politica_privacidade')       
 
         #validação termos 
         if autorizacao_publicacao != '1':
@@ -56,20 +52,17 @@ def Depoimentos(request):
             autorizacao_publicacao=autorizacao_publicacao,
             aceite_politica_privacidade=aceite_politica_privacidade
         )
-
         # Salva o novo depoimento no banco de dados
         novo_depoimento.save()
-
+        messages.add_message(request, constants.SUCCESS, 'Depoimento enviado com sucesso!!')
         # Redireciona o usuário para uma página de sucesso ou para a página de depoimentos
         return redirect('depoimentos')   
     
-    
-
-def novo_depoimento(request):
-  nivel_curso = Nivel_Curso.objects.all()
-  curso = Curso.objects.all()
-  if request.method == 'GET':
-    return render(request, 'depoimentos.html', {'nivel_curso':nivel_curso, 'curso':curso})
+# def novo_depoimento(request):
+#   nivel_curso = Nivel_Curso.objects.all()
+#   curso = Curso.objects.all()
+#   if request.method == 'GET':
+#     return render(request, 'depoimentos.html', {'nivel_curso':nivel_curso, 'curso':curso})
 def objetivos(request):
   return render(request, 'objetivos.html')
 

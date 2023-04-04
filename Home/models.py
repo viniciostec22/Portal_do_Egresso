@@ -1,8 +1,4 @@
-import email
-from pyexpat import model
-from tkinter import CASCADE
 from django.db import models
-from django.forms import CharField
 
 class Nivel_Curso(models.Model):
   nivel_curso = models.CharField(max_length=50)
