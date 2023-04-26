@@ -2,15 +2,21 @@
 <div>
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      {% for img in slaider %}
-      <div class="carousel-item {% if forloop.first %} active {% endif %}">
-        <img src="{{img}}" class="d-block w-100" alt="Slide {{ forloop.counter }}">
-        <div class="carousel-caption d-none d-md-block">
-          <h5></h5>
-          <p></p>
-        </div>
-      </div>
-      {% endfor %}
+     {% if slaider %}
+     {% for img in slaider %}
+     <div class="carousel-item {% if forloop.first %} active {% endif %}">
+       <img src="{{img}}" class="d-block w-100" alt="Slide {{ forloop.counter }}">
+       <div class="carousel-caption d-none d-md-block">
+         <h5></h5>
+         <p></p>
+       </div>
+     </div>
+   {% endfor %}
+   {% else %}
+   <div class="carousel-item  active">
+    <img src="{% static 'img/indisponivel.webp' %}" class="d-block w-100" alt="Indisponível">
+    <div class="carousel-caption d-none d-md-block">
+     {% endif %}
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
