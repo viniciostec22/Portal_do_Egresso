@@ -1,19 +1,40 @@
+from pyexpat import model
 from django.shortcuts import render, redirect
-from .models import Depoimento, Nivel_Curso, Curso
+from .models import Depoimento, Nivel_Curso, Curso, Apresentacao, Pesquisa_Egresso, Rodape_links, Rodape_servico, Endereco, Slaider, Objetivos, Epregos_cerreira
 from django.contrib import messages
 from django.contrib.messages import constants
 
 # Create your views here.
 def Home(request):
-  return render(request, 'home.html')
+  apresentacao = Apresentacao.objects.all().first()
+  pesquisa_egresso = Pesquisa_Egresso.objects.all().first()
+  links = Rodape_links.objects.all()
+  servicos = Rodape_servico.objects.all()
+  endereco = Endereco.objects.all().first()
+  slaider = Slaider.objects.all()
+  return render(request, 'home.html', {'apresentacao':apresentacao, 
+                                       'pesquisa_egresso':pesquisa_egresso, 
+                                       'links':links, 
+                                       'servicos':servicos,
+                                       'endereco':endereco,
+                                       'slaider':slaider,
+                                       })
 
 def Depoimentos(request):
+  links = Rodape_links.objects.all()
+  servicos = Rodape_servico.objects.all()
+  endereco = Endereco.objects.all().first()
   nivel_curso = Nivel_Curso.objects.all()
   cursos = Curso.objects.all()
   depoimentos = Depoimento.objects.filter(aprovado = True)
   cards = depoimentos
   if request.method == 'GET':
-    return render(request, 'depoimentos.html', {'cards':cards, 'nivel_curso':nivel_curso, 'cursos':cursos})
+    return render(request, 'depoimentos.html', {'cards':cards, 
+                                                'nivel_curso':nivel_curso, 
+                                                'cursos':cursos, 
+                                                'links':links, 
+                                                'servicos':servicos,
+                                                'endereco':endereco,})
   
   elif request.method == 'POST':
         nome = request.POST.get('nome')
@@ -64,7 +85,24 @@ def Depoimentos(request):
 #   if request.method == 'GET':
 #     return render(request, 'depoimentos.html', {'nivel_curso':nivel_curso, 'curso':curso})
 def objetivos(request):
-  return render(request, 'objetivos.html')
+  objetivo = Objetivos.objects.all().first
+  links = Rodape_links.objects.all()
+  servicos = Rodape_servico.objects.all()
+  endereco = Endereco.objects.all().first()
+  
+  return render(request, 'objetivos.html', { 'links':links, 
+                                             'servicos':servicos,
+                                             'endereco':endereco,
+                                             'objetivo':objetivo,
+                                             })
 
 def empregos_carrera(request):
-  return render(request, 'empregos.html')
+  links = Rodape_links.objects.all()
+  servicos = Rodape_servico.objects.all()
+  endereco = Endereco.objects.all().first()
+  empregos_carrera = Epregos_cerreira.objects.first()
+  return render(request, 'empregos.html',{ 'links':links, 
+                                             'servicos':servicos,
+                                             'endereco':endereco,
+                                             'empregos_carrera':empregos_carrera,
+                                             })

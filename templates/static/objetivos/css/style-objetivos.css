@@ -3,6 +3,6 @@
 }
 #objetivo{
   text-align: justify;
-  font-size: 24px;
+  word-break: break-word;
 
 }

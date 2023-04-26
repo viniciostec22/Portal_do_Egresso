@@ -3,6 +3,7 @@
 <footer>
   <div class="container-flui footer">
     <div class="container" main>
+    
       <div class="row">
         <div class="col-xl-3 col-lg-4 col-md-6">
           <div>
@@ -14,18 +15,11 @@
           <div class="">
             <h4>Links Importantes</h4>
             <ul class="list-unstyled">
+              {% for link in links %}
               <li>
-                <a href="#" class="text-decoration-none">1</a>
+                <a href="{{link.links_importantes}}" target="_blank"class="text-decoration-none">{{link.nome_link}}</a>
               </li>
-              <li>
-                <a href="#" class="text-decoration-none">2</a>
-              </li>
-              <li>
-                <a href="#" class="text-decoration-none">3</a>
-              </li>
-              <li>
-                <a href="#" class="text-decoration-none">4</a>
-              </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -33,18 +27,11 @@
           <div>
             <h4>Serviços</h4>
             <ul class="list-unstyled">
-              <li>
-                <a href="#" class="text-decoration-none">1</a>
-              </li>
-              <li>
-                <a href="#" class="text-decoration-none">2</a>
-              </li>
-              <li>
-                <a href="#" class="text-decoration-none">3</a>
-              </li>
-              <li>
-                <a href="#" class="text-decoration-none">4</a>
-              </li>
+              {% for servico in servicos %}
+                <li>
+                  <a href="{{servico.link_servico}}"target="_blank" class="text-decoration-none">{{servico.servicos}}</a>
+                </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -53,8 +40,9 @@
             <h4>Endereço</h4>
             <ul class="list-unstyled">
               <li>
-                <p>Instituto Federal de Educação, Ciência e Tecnologia Baiano – Campus Bom Jesus da Lapa
-                  BR 349, Km 14 - Zona Rural, Bom Jesus da Lapa - Bahia, CEP: 47600-000</p>
+                <p>
+                  {{endereco.endereco}}
+                </p>
               </li>
              
             </ul>
@@ -62,7 +50,6 @@
         </div>
       </div>
       <div class="d-flex justify-content-center">
-  
         <div class="copyright">
           <p>copyright GTI IFBaino 2023 <a href="#" target="_blank"></a></p>
         </div>
