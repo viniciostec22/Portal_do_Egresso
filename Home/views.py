@@ -1,8 +1,8 @@
-from pyexpat import model
-from django.shortcuts import render, redirect
-from .models import Depoimento, Nivel_Curso, Curso, Apresentacao, Pesquisa_Egresso, Rodape_links, Rodape_servico, Endereco, Slaider, Objetivos, Epregos_cerreira
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import *
 from django.contrib import messages
 from django.contrib.messages import constants
+from django.http import JsonResponse
 
 # Create your views here.
 def Home(request):
@@ -19,19 +19,26 @@ def Home(request):
                                        'endereco':endereco,
                                        'slaider':slaider,
                                        })
-
+  
+def cursos_do_campus(request, campus_id):
+    cursos = Curso.objects.filter(campus__id=campus_id)
+    cursos_list = [{'id': curso.id, 'nome': curso.curso, } for curso in cursos]
+    return JsonResponse({'cursos': cursos_list})
+  
 def Depoimentos(request):
   links = Rodape_links.objects.all()
   servicos = Rodape_servico.objects.all()
   endereco = Endereco.objects.all().first()
   nivel_curso = Nivel_Curso.objects.all()
   cursos = Curso.objects.all()
+  campi = Campi.objects.all()
   depoimentos = Depoimento.objects.filter(aprovado = True)
   cards = depoimentos
   if request.method == 'GET':
     return render(request, 'depoimentos.html', {'cards':cards, 
                                                 'nivel_curso':nivel_curso, 
-                                                'cursos':cursos, 
+                                                'cursos':cursos,
+                                                'campi':campi, 
                                                 'links':links, 
                                                 'servicos':servicos,
                                                 'endereco':endereco,})
@@ -40,8 +47,9 @@ def Depoimentos(request):
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         foto = request.FILES.get('foto')
-        nivel = request.POST.get('nivel')
+        #nivel = request.POST.get('nivel')
         turma = request.POST.get('turma')
+        campus = request.POST.get('campus')
         curso = request.POST.get('curso')
         depoimento = request.POST.get('depoimento')
         autorizacao_publicacao = request.POST.get('autorizacao')  
@@ -66,7 +74,8 @@ def Depoimentos(request):
             nome=nome,
             email=email,
             foto=foto,
-            nivel_id=nivel,
+            #nivel_id= curso.nivel,
+            campus_id = campus,
             turma=turma,
             curso_id=curso,
             depoimento=depoimento,
@@ -79,11 +88,7 @@ def Depoimentos(request):
         # Redireciona o usuário para uma página de sucesso ou para a página de depoimentos
         return redirect('depoimentos')   
     
-# def novo_depoimento(request):
-#   nivel_curso = Nivel_Curso.objects.all()
-#   curso = Curso.objects.all()
-#   if request.method == 'GET':
-#     return render(request, 'depoimentos.html', {'nivel_curso':nivel_curso, 'curso':curso})
+
 def objetivos(request):
   objetivo = Objetivos.objects.all().first
   links = Rodape_links.objects.all()

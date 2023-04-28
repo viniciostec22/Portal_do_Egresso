@@ -16,11 +16,13 @@
   margin: 30px;
   background-color: var(--main-color);
   border-color: solid 2px var(--main-color);
+  color: #fff;
 }
 
+
 .justify-content-center a:hover{
-  background-color: var(--light-color);
+  background-color: var(--differential-color);
   border-color: solid 2px var(--main-color);
   transition: 0.5s;
-  color: var(--main-color);
+  color: #fff;
 }

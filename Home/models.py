@@ -1,26 +1,38 @@
-
 from django.db import models
 from PIL import Image
 from django.db import models
 
+
 class Nivel_Curso(models.Model):
-  nivel_curso = models.CharField(max_length=50)
-  
-  def __str__(self) -> str:
-    return self.nivel_curso
-  
+    nivel_curso = models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return self.nivel_curso
+
+class Campi(models.Model):
+    nome_campus = models.CharField(max_length=50, verbose_name="Campus")
+    cidade = models.CharField(max_length=50, verbose_name="Cidade")
+    endereco = models.CharField(max_length=150, verbose_name="Endereço")
+
+    def __str__(self) -> str:
+        return self.nome_campus
+
 class Curso(models.Model):
-  curso = models.CharField(max_length=50)
-  
-  def __str__(self) -> str:
-    return self.curso
+    curso = models.CharField(max_length=50)
+    descricao = models.TextField(null=True)
+    campus = models.ManyToManyField(Campi, related_name='cursos')
+    nivel = models.ForeignKey(Nivel_Curso, on_delete=models.CASCADE, null=True)
+
+    def __str__(self) -> str:
+        return self.curso
   
 class Depoimento(models.Model):
   nome = models.CharField(max_length=50)
   email = models.EmailField(max_length=254)
   foto = models.ImageField(upload_to='img_perfil', blank=True, null=True)
-  nivel = models.ForeignKey(Nivel_Curso, on_delete=models.DO_NOTHING) 
+  #nivel = models.ForeignKey(Nivel_Curso, on_delete=models.DO_NOTHING, null=True) 
   turma = models.CharField(max_length=20)
+  campus = models.ForeignKey(Campi, on_delete=models.DO_NOTHING, null=True)
   curso = models.ForeignKey(Curso, on_delete=models.DO_NOTHING)
   depoimento = models.TextField()
   autorizacao_publicacao = models.BooleanField(default=False)

@@ -35,14 +35,16 @@
 .button{
   background-color: var(--main-color);
   border: solid 2px var(--main-color);
+  color: #fff;
   
 }
 .button:hover{
-  background-color: #fff;
-  border: solid 2px var(--main-color);
-  color: var(--main-color);
+  background-color: var(--differential-color);
+  border: solid 2px var(--differential-color);
+  color: #fff;
   transition: 0.5s;
 }
+
 
 /*Depoimentos*/
 .depoimentos{

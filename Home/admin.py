@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Depoimento, Nivel_Curso, Curso, Apresentacao, Pesquisa_Egresso, Rodape_links, Rodape_servico, Endereco, Slaider, Objetivos, Epregos_cerreira
+from .models import *
 
 
 class DepoimentoAdmin(admin.ModelAdmin):
@@ -19,3 +19,5 @@ admin.site.register(Endereco)
 admin.site.register(Slaider)
 admin.site.register(Objetivos)
 admin.site.register(Epregos_cerreira)
+admin.site.register(Campi)
+

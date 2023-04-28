@@ -120,7 +120,7 @@ html, body {
 }
 
 .title hr{
- border: solid 3px red;
+ border: solid 3px var(--differential-color);
  opacity: .50;
  margin-top: 1px;
  width: 50%;
