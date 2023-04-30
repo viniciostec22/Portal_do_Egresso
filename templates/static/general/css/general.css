@@ -236,8 +236,9 @@ body > div > div > div.container-fluid.depoimentos-form > div.container.text > d
   color: #fff;
 }
 .logo{
-  width: 200px;
-  height: 200px;
+  width: 110px;
+  height: 130px;
+  margin-bottom: 15px;
 }
 .footer .container .row a{
   text-decoration: none;
@@ -246,4 +247,27 @@ body > div > div > div.container-fluid.depoimentos-form > div.container.text > d
 }
 .copyright a{
   color: #fff;
+}
+.navbar-light .navbar-toggler{
+  color: #fff;
+  border-color: #fff;
+}
+.navbar-light .navbar-toggler-icon{
+  background-image: url(../../img/menu_bars.png);
+  fill:#fff;
+}
+
+@media only screen and (max-width: 767px) {
+  /*rodape*/
+  .logo{
+    width: 60px;
+    height: 80px;
+    margin-bottom: 15px;
+  }
+
+  .navbar-light .navbar-brand{
+    font-size: 28px;
+  }
+
+
 }
