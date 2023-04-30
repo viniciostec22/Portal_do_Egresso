@@ -22,7 +22,8 @@ def Home(request):
   
 def cursos_do_campus(request, campus_id):
     cursos = Curso.objects.filter(campus__id=campus_id)
-    cursos_list = [{'id': curso.id, 'nome': curso.curso, } for curso in cursos]
+    cursos_list = [{'id': curso.id, 'nome': curso.curso, 'nivel': curso.nivel.nivel_curso  } for curso in cursos]
+    #print(cursos_list)
     return JsonResponse({'cursos': cursos_list})
   
 def Depoimentos(request):

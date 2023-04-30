@@ -144,7 +144,7 @@ $(document).ready(function() {
         $('#curso').empty();
         $('#curso').append('<option value="">Selecione um curso</option>');
         $.each(cursos, function(i, curso) {
-          $('#curso').append('<option value="' + curso.id + '">' + curso.nome + '</option>');
+          $('#curso').append('<option value="' + curso.id + '">' + curso.nivel + ' - ' + curso.nome + '</option>');
         });
       });
     } else {
