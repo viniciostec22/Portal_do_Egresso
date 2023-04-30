@@ -1,8 +1,13 @@
+from webbrowser import get
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
 from django.contrib import messages
 from django.contrib.messages import constants
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
+from django.http import FileResponse
+from django.conf import settings
+
+
 
 # Create your views here.
 def Home(request):
@@ -22,7 +27,7 @@ def Home(request):
   
 def cursos_do_campus(request, campus_id):
     cursos = Curso.objects.filter(campus__id=campus_id)
-    cursos_list = [{'id': curso.id, 'nome': curso.curso, 'nivel': curso.nivel.nivel_curso  } for curso in cursos]
+    cursos_list = [{'id': curso.id, 'nome': curso.curso, 'nivel': curso.nivel.nivel_curso  } for curso in cursos] # type: ignore
     #print(cursos_list)
     return JsonResponse({'cursos': cursos_list})
   
@@ -35,6 +40,10 @@ def Depoimentos(request):
   campi = Campi.objects.all()
   depoimentos = Depoimento.objects.filter(aprovado = True)
   cards = depoimentos
+  
+ 
+
+
   if request.method == 'GET':
     return render(request, 'depoimentos.html', {'cards':cards, 
                                                 'nivel_curso':nivel_curso, 
@@ -42,7 +51,10 @@ def Depoimentos(request):
                                                 'campi':campi, 
                                                 'links':links, 
                                                 'servicos':servicos,
-                                                'endereco':endereco,})
+                                                'endereco':endereco,
+                                                #'politica':politica,
+                                                #'pdf_path': pdf_path
+                                                })
   
   elif request.method == 'POST':
         nome = request.POST.get('nome')
@@ -89,7 +101,16 @@ def Depoimentos(request):
         # Redireciona o usuário para uma página de sucesso ou para a página de depoimentos
         return redirect('depoimentos')   
     
-
+def politica_privacidade(request):
+  politica = Politica.objects.get(id=1) # obtém o primeiro objeto da model Politica
+  pdf_path = politica.arquivo.path
+  with open(pdf_path, 'rb') as pdf_file:
+        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline; filename=politica.pdf'
+        return response
+  
+  #return render(request, 'politica.html', {'politica': politica})
+  
 def objetivos(request):
   objetivo = Objetivos.objects.all().first
   links = Rodape_links.objects.all()

@@ -20,4 +20,5 @@ admin.site.register(Slaider)
 admin.site.register(Objetivos)
 admin.site.register(Epregos_cerreira)
 admin.site.register(Campi)
+admin.site.register(Politica)
 

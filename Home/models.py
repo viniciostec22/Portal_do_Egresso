@@ -112,3 +112,13 @@ class Epregos_cerreira(models.Model):
   texto = models.TextField(verbose_name="Texto da descrição ")
   def __str__(self) -> str:
     return self.titulo
+  
+class Politica(models.Model):
+    titulo = models.CharField(max_length=100)
+    arquivo = models.FileField(upload_to='politicas/')
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titulo
+    def get_absolute_url(self):
+        return "/media/" + str(self.arquivo)
