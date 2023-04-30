@@ -6,6 +6,7 @@ from django.contrib.messages import constants
 from django.http import HttpResponse, JsonResponse
 from django.http import FileResponse
 from django.conf import settings
+from django.db.models import Q
 
 
 
@@ -32,19 +33,22 @@ def cursos_do_campus(request, campus_id):
     return JsonResponse({'cursos': cursos_list})
   
 def Depoimentos(request):
+  search = request.GET.get('search', '')
   links = Rodape_links.objects.all()
   servicos = Rodape_servico.objects.all()
   endereco = Endereco.objects.all().first()
   nivel_curso = Nivel_Curso.objects.all()
   cursos = Curso.objects.all()
   campi = Campi.objects.all()
-  depoimentos = Depoimento.objects.filter(aprovado = True)
-  cards = depoimentos
   
- 
-
-
+  
   if request.method == 'GET':
+    cards = Depoimento.objects.filter(aprovado=True).filter(Q(campus__nome_campus__contains=search)| Q(curso__curso__contains=search) | Q(turma__contains=search) | Q(curso__nivel__nivel_curso__contains=search))
+
+
+
+
+    
     return render(request, 'depoimentos.html', {'cards':cards, 
                                                 'nivel_curso':nivel_curso, 
                                                 'cursos':cursos,
@@ -52,7 +56,7 @@ def Depoimentos(request):
                                                 'links':links, 
                                                 'servicos':servicos,
                                                 'endereco':endereco,
-                                                #'politica':politica,
+                                                #'filtro':filtro,
                                                 #'pdf_path': pdf_path
                                                 })
   

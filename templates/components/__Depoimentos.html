@@ -9,13 +9,16 @@
   </div>
   {% comment %} filtro {% endcomment %}
   <div class="container filtro">
-    <label for="">Filtro:</label>
-    <select class="form-select select" aria-label="Default select example">
+    <form action="{% url 'depoimentos' %}" method="GET">
+      <label for="">Filtro:</label>
+    <input type="search" class="form-control" id="" name="search" value="{{ request.GET.search }}" placeholder="Campus, Curso, Turma, Nivel ">
+    </form>
+    {% comment %} <select class="form-select select" aria-label="Default select example">
       <option selected>Selecione o filtro</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
-    </select>
+    </select> {% endcomment %}
     <button type="submit" class="btn button">
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
