@@ -10,6 +10,9 @@
   border-radius: 10px;
  
 }
+.responsivo{
+  display: none;
+}
 .filtro label{
   display: inline-block;
   margin-right: 10px;
@@ -20,7 +23,6 @@
 
 .filtro form{
   display: inline-flex;
-  margin-right: 10px;
   color: var(--text-color);
   width: 50%;
 }
@@ -160,5 +162,29 @@
 @media only screen and (max-width: 767px) {
   .form-depoimentos{
     width: 100%;
+  }
+
+  .filtro {
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+  }
+  
+  .filtro form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .filtro .responsivo {
+    margin-top: 10px;
+    color: var(--text-color);
+  }
+  .responsivo {
+    display: block;
+    margin: 10px;
+  }
+  .filtro label{
+    display: none;
   }
 }

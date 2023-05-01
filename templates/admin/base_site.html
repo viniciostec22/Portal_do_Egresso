@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+  <h1 id="site-name"><a href="{% url 'admin:index' %}">
+    <img class="logo-admin" src="{% static 'img/Logotipo_mobile.svg' %}" alt="">
+    Peinel Administrativo Portal De Egressos</a></h1>
+{% endblock %}
+
+{% block extrahead %}
+  <link rel="stylesheet" type="text/css" href="{% static 'general/css/admin.css' %}">
+  {% comment %} <style>
+    #header{
+      background-color: #00510F;
+  }
+  </style> {% endcomment %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

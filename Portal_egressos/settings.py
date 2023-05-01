@@ -28,8 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap5',
     'Home',
+    # outras aplicações
+    'bootstrap5',
+    'django_extensions',
     
 
 ]
@@ -112,10 +114,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'templates/static'),)
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'templates/static'),
+    os.path.join(BASE_DIR, 'static/admin'),
+    os.path.join(BASE_DIR, 'static/admin/css'),
+]
 STATIC_ROOT = os.path.join('static')
 
-#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
