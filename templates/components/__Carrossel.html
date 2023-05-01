@@ -1,4 +1,14 @@
 {% load static %}
+{% if messages %}
+<br>
+{% for message in messages %}
+<div class="alert {{message.tags}} alert-dismissible fade show ">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endfor %}
+{% endif %}
 <div>
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">

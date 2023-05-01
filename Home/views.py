@@ -13,20 +13,58 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def Home(request):
-  apresentacao = Apresentacao.objects.all().first()
-  pesquisa_egresso = Pesquisa_Egresso.objects.all().first()
-  links = Rodape_links.objects.all()
-  servicos = Rodape_servico.objects.all()
-  endereco = Endereco.objects.all().first()
-  slaider = Slaider.objects.all()
-  return render(request, 'home.html', {'apresentacao':apresentacao, 
-                                       'pesquisa_egresso':pesquisa_egresso, 
-                                       'links':links, 
-                                       'servicos':servicos,
-                                       'endereco':endereco,
-                                       'slaider':slaider,
-                                       })
-  
+  if request.method == 'GET':
+    apresentacao = Apresentacao.objects.all().first()
+    pesquisa_egresso = Pesquisa_Egresso.objects.all().first()
+    links = Rodape_links.objects.all()
+    servicos = Rodape_servico.objects.all()
+    endereco = Endereco.objects.all().first()
+    slaider = Slaider.objects.all()
+    campi = Campi.objects.all()
+    return render(request, 'home.html', {'apresentacao':apresentacao, 
+                                        'pesquisa_egresso':pesquisa_egresso, 
+                                        'links':links, 
+                                        'servicos':servicos,
+                                        'endereco':endereco,
+                                        'slaider':slaider,
+                                        'campi':campi,
+                                        })
+  elif request.method == 'POST':
+      nome = request.POST.get('nome')
+      email = request.POST.get('email')
+      telefone = request.POST.get('telefone')
+      aceito = request.POST.get('aceito')
+      politica = request.POST.get('politica')
+      print(nome, email, telefone, aceito, politica)
+     
+      if aceito != '1':
+          messages.add_message(request, constants.ERROR, 'Você precisa Autorizar o recebimento de conteudos.')
+          return redirect('depoimentos')
+      else:
+          aceito = True
+
+      if politica != '1':
+            messages.add_message(request, constants.ERROR, 'Você precisa aceitar os termos e condições.')
+            return redirect('depoimentos')
+      else:
+          politica = True
+      if not nome:
+          messages.add_message(request, constants.ERROR, 'Por favor, informe seu nome.')
+      elif not email:
+          messages.add_message(request, constants.ERROR, 'Por favor, informe seu e-mail.')
+      elif not telefone:
+          messages.add_message(request, constants.ERROR, 'Por favor, informe seu telefone.')
+      
+      novo_contato = Contato(
+        nome = nome,
+        email = email,
+        telefone = telefone
+      )
+      novo_contato.save()
+      messages.add_message(request, constants.SUCCESS, 'Contato enviado com sucesso!!')
+    
+      return render(request, 'home.html')
+    
 def cursos_do_campus(request, campus_id):
     cursos = Curso.objects.filter(campus__id=campus_id)
     cursos_list = [{'id': curso.id, 'nome': curso.curso, 'nivel': curso.nivel.nivel_curso  } for curso in cursos] # type: ignore
@@ -59,6 +97,7 @@ def Depoimentos(request):
                                                 'servicos':servicos,
                                                 'endereco':endereco,
                                                 })
+  
     
 def add_depoimentos(request):
   if request.method =='POST':
@@ -72,6 +111,24 @@ def add_depoimentos(request):
       depoimento = request.POST.get('depoimento')
       autorizacao_publicacao = request.POST.get('autorizacao')  
       aceite_politica_privacidade = request.POST.get('politica_privacidade')       
+      if not nome:
+          messages.add_message(request, constants.ERROR, 'O campo Nome é obrigatório.')
+          return redirect('depoimentos')
+      elif not email:
+          messages.add_message(request, constants.ERROR, 'O campo E-mail é obrigatório.')
+          return redirect('depoimentos')
+      elif not turma:
+          messages.add_message(request, constants.ERROR, 'O campo Turma é obrigatório.')
+          return redirect('depoimentos')
+      elif not campus:
+          messages.add_message(request, constants.ERROR, 'O campo Campus é obrigatório.')
+          return redirect('depoimentos')
+      elif not curso:
+          messages.add_message(request, constants.ERROR, 'O campo Curso é obrigatório.')
+          return redirect('depoimentos')
+      elif not depoimento:
+          messages.add_message(request, constants.ERROR, 'O campo Depoimento é obrigatório.')
+          return redirect('depoimentos')
 
       #validação termos 
       if autorizacao_publicacao != '1':
@@ -85,8 +142,6 @@ def add_depoimentos(request):
           return redirect('depoimentos')
       else:
         aceite_politica_privacidade = True
-
-        
       #Cria uma instância do modelo Depoimento com os dados recebidos
       novo_depoimento = Depoimento(
           nome=nome,

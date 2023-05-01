@@ -21,4 +21,5 @@ admin.site.register(Objetivos)
 admin.site.register(Epregos_cerreira)
 admin.site.register(Campi)
 admin.site.register(Politica)
+admin.site.register(Contato)
 

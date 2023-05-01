@@ -1,7 +1,16 @@
+import email
 from django.db import models
 from PIL import Image
 from django.db import models
 
+
+class Contato(models.Model):
+  nome = models.CharField(max_length=100, verbose_name="Nome")
+  email = models.EmailField(verbose_name="E-mail")
+  telefone = models.CharField(max_length=11, verbose_name="Telefone")
+  
+  def __str__(self) -> str:
+     return self.nome
 
 class Nivel_Curso(models.Model):
     nivel_curso = models.CharField(max_length=50)
