@@ -7,6 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from django.http import FileResponse
 from django.conf import settings
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 
@@ -40,71 +41,72 @@ def Depoimentos(request):
   nivel_curso = Nivel_Curso.objects.all()
   cursos = Curso.objects.all()
   campi = Campi.objects.all()
-  
-  
-  if request.method == 'GET':
-    cards = Depoimento.objects.filter(aprovado=True).filter(Q(campus__nome_campus__contains=search)| Q(curso__curso__contains=search) | Q(turma__contains=search) | Q(curso__nivel__nivel_curso__contains=search))
-
-
-
-
-    
-    return render(request, 'depoimentos.html', {'cards':cards, 
+  cards_list = Depoimento.objects.filter(aprovado=True).filter(
+                                      Q(campus__nome_campus__contains=search)|
+                                      Q(curso__curso__contains=search) |
+                                      Q(turma__contains=search) | 
+                                      Q(curso__nivel__nivel_curso__contains=search))
+  paginator = Paginator(cards_list, 4) # 4 cards por página
+  page = request.GET.get('page')
+  cards = paginator.get_page(page) 
+  print(cards_list)
+   
+  return render(request, 'depoimentos.html', {'cards':cards, 
                                                 'nivel_curso':nivel_curso, 
                                                 'cursos':cursos,
                                                 'campi':campi, 
                                                 'links':links, 
                                                 'servicos':servicos,
                                                 'endereco':endereco,
-                                                #'filtro':filtro,
-                                                #'pdf_path': pdf_path
                                                 })
-  
-  elif request.method == 'POST':
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
-        foto = request.FILES.get('foto')
-        #nivel = request.POST.get('nivel')
-        turma = request.POST.get('turma')
-        campus = request.POST.get('campus')
-        curso = request.POST.get('curso')
-        depoimento = request.POST.get('depoimento')
-        autorizacao_publicacao = request.POST.get('autorizacao')  
-        aceite_politica_privacidade = request.POST.get('politica_privacidade')       
+    
+def add_depoimentos(request):
+  if request.method =='POST':
+      nome = request.POST.get('nome')
+      email = request.POST.get('email')
+      foto = request.FILES.get('foto')
+      #nivel = request.POST.get('nivel')
+      turma = request.POST.get('turma')
+      campus = request.POST.get('campus')
+      curso = request.POST.get('curso')
+      depoimento = request.POST.get('depoimento')
+      autorizacao_publicacao = request.POST.get('autorizacao')  
+      aceite_politica_privacidade = request.POST.get('politica_privacidade')       
 
-        #validação termos 
-        if autorizacao_publicacao != '1':
+      #validação termos 
+      if autorizacao_publicacao != '1':
+        messages.add_message(request, constants.ERROR, 'Você precisa aceitar os termos e condições.')
+        return redirect('depoimentos')
+      else:
+        autorizacao_publicacao = True
+
+      if aceite_politica_privacidade != '1':
           messages.add_message(request, constants.ERROR, 'Você precisa aceitar os termos e condições.')
           return redirect('depoimentos')
-        else:
-          autorizacao_publicacao = True
-
-        if aceite_politica_privacidade != '1':
-            messages.add_message(request, constants.ERROR, 'Você precisa aceitar os termos e condições.')
-            return redirect('depoimentos')
-        else:
-          aceite_politica_privacidade = True
+      else:
+        aceite_politica_privacidade = True
 
         
-        #Cria uma instância do modelo Depoimento com os dados recebidos
-        novo_depoimento = Depoimento(
-            nome=nome,
-            email=email,
-            foto=foto,
-            #nivel_id= curso.nivel,
-            campus_id = campus,
-            turma=turma,
-            curso_id=curso,
-            depoimento=depoimento,
-            autorizacao_publicacao=autorizacao_publicacao,
-            aceite_politica_privacidade=aceite_politica_privacidade
-        )
-        # Salva o novo depoimento no banco de dados
-        novo_depoimento.save()
-        messages.add_message(request, constants.SUCCESS, 'Depoimento enviado com sucesso!!')
-        # Redireciona o usuário para uma página de sucesso ou para a página de depoimentos
-        return redirect('depoimentos')   
+      #Cria uma instância do modelo Depoimento com os dados recebidos
+      novo_depoimento = Depoimento(
+          nome=nome,
+          email=email,
+          foto=foto,
+          #nivel_id= curso.nivel,
+          campus_id = campus,
+          turma=turma,
+          curso_id=curso,
+          depoimento=depoimento,
+          autorizacao_publicacao=autorizacao_publicacao,
+          aceite_politica_privacidade=aceite_politica_privacidade
+      )
+      # Salva o novo depoimento no banco de dados
+      novo_depoimento.save()
+      messages.add_message(request, constants.SUCCESS, 'Depoimento enviado com sucesso!!')
+      # Redireciona o usuário para uma página de sucesso ou para a página de depoimentos
+      return redirect('depoimentos')  
     
+        
 def politica_privacidade(request):
   politica = Politica.objects.get(id=1) # obtém o primeiro objeto da model Politica
   pdf_path = politica.arquivo.path

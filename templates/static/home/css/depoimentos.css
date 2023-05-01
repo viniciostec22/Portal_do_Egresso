@@ -37,6 +37,7 @@
   background-color: var(--main-color);
   border: solid 2px var(--main-color);
   color: #fff;
+  margin-left: 10px;
   
 }
 .button:hover{
@@ -97,7 +98,20 @@
   display: block;
   margin: auto;
 }
+/*paginação*/
+.page-item.active .page-link{
+  background-color: var(--differential-color);
+  border-color: var(--differential-color);
+}
 
+.page-link {
+  color: var(--main-color);
+  
+}
+.page-link:hover{
+  background-color: var(--main-color);
+  color: #fff;
+}
 /*novo depoimento*/
 .depoimentos-form{
   background-color:var(--light-color) ;
