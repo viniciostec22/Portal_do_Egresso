@@ -39,7 +39,7 @@ class Curso(models.Model):
 class Depoimento(models.Model):
   nome = models.CharField(max_length=50)
   email = models.EmailField(max_length=254)
-  foto = models.ImageField(upload_to='img_perfil', blank=True, null=True)
+  foto = models.ImageField(upload_to='img_perfil/', blank=True, null=True)
   #nivel = models.ForeignKey(Nivel_Curso, on_delete=models.DO_NOTHING, null=True) 
   turma = models.CharField(max_length=20)
   campus = models.ForeignKey(Campi, on_delete=models.DO_NOTHING, null=True)
@@ -54,7 +54,7 @@ class Depoimento(models.Model):
     return self.nome
   
 class Slaider(models.Model):
-    img = models.ImageField(upload_to='img')
+    img = models.ImageField(upload_to='img/')
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
