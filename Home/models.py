@@ -8,6 +8,7 @@ class Contato(models.Model):
   nome = models.CharField(max_length=100, verbose_name="Nome")
   email = models.EmailField(verbose_name="E-mail")
   telefone = models.CharField(max_length=11, verbose_name="Telefone")
+  enviado_boas_vindas = models.BooleanField(default=False,verbose_name="Email de confirmação")
   
   def __str__(self) -> str:
      return self.nome

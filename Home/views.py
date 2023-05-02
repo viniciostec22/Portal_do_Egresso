@@ -1,17 +1,24 @@
-from webbrowser import get
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
 from django.contrib import messages
 from django.contrib.messages import constants
 from django.http import HttpResponse, JsonResponse
-from django.http import FileResponse
-from django.conf import settings
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 
 
 
 # Create your views here.
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
 def Home(request):
   if request.method == 'GET':
     apresentacao = Apresentacao.objects.all().first()
@@ -21,6 +28,7 @@ def Home(request):
     endereco = Endereco.objects.all().first()
     slaider = Slaider.objects.all()
     campi = Campi.objects.all()
+    
     return render(request, 'home.html', {'apresentacao':apresentacao, 
                                         'pesquisa_egresso':pesquisa_egresso, 
                                         'links':links, 
@@ -35,8 +43,7 @@ def Home(request):
       telefone = request.POST.get('telefone')
       aceito = request.POST.get('aceito')
       politica = request.POST.get('politica')
-      print(nome, email, telefone, aceito, politica)
-     
+      
       if aceito != '1':
           messages.add_message(request, constants.ERROR, 'Você precisa Autorizar o recebimento de conteudos.')
           return redirect('depoimentos')
@@ -48,22 +55,42 @@ def Home(request):
             return redirect('depoimentos')
       else:
           politica = True
+          
       if not nome:
           messages.add_message(request, constants.ERROR, 'Por favor, informe seu nome.')
       elif not email:
           messages.add_message(request, constants.ERROR, 'Por favor, informe seu e-mail.')
       elif not telefone:
           messages.add_message(request, constants.ERROR, 'Por favor, informe seu telefone.')
+      else:
+          novo_contato = Contato(
+            nome=nome,
+            email=email,
+            telefone=telefone,
+            enviado_boas_vindas=False # define o campo que indica se o e-mail de boas-vindas já foi enviado
+          )
+         
+          
+          # Envia o e-mail de boas-vindas para o novo contato
+          context = {'novo_contato': novo_contato}
+          html_content = render_to_string('email/boas_vindas_newslatter.html', context)
+          text_content = strip_tags(html_content)
       
-      novo_contato = Contato(
-        nome = nome,
-        email = email,
-        telefone = telefone
-      )
-      novo_contato.save()
-      messages.add_message(request, constants.SUCCESS, 'Contato enviado com sucesso!!')
-    
-      return render(request, 'home.html')
+          email = EmailMultiAlternatives(
+            'Bem-vindo à nossa newsletter', 
+            text_content, 
+            settings.EMAIL_HOST_USER, 
+            [email]
+          )
+          email.attach_alternative(html_content, 'text/html')
+          email.send()
+          
+          
+          novo_contato.enviado_boas_vindas = True
+          novo_contato.save()
+          messages.add_message(request, constants.SUCCESS, 'Contato enviado com sucesso!!')
+          return redirect('home')
+
     
 def cursos_do_campus(request, campus_id):
     cursos = Curso.objects.filter(campus__id=campus_id)

@@ -128,3 +128,6 @@ db.sqlite3
 db copy.sqlite3
 #static/
 Footer
+
+#vscode
+.vscode
