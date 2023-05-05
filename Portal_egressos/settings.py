@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Home',
-    'mensagens',
+   
     # outras aplicações
     'bootstrap5',
     'django_extensions',
@@ -120,7 +120,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS =[
     os.path.join(BASE_DIR, 'templates/static'),
     os.path.join(BASE_DIR, 'static/admin'),
-    os.path.join(BASE_DIR, 'static/admin/css'),
+   # os.path.join(BASE_DIR, 'static/admin/css'),
 ]
 STATIC_ROOT = os.path.join('static')
 

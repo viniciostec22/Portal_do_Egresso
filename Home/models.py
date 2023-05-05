@@ -132,3 +132,13 @@ class Politica(models.Model):
         return self.titulo
     def get_absolute_url(self):
         return "/media/" + str(self.arquivo)
+      
+      
+class Mensagem(models.Model):
+    assunto = models.CharField(max_length=255)
+    corpo = models.TextField()
+    anexo = models.FileField(upload_to='anexos/', null=True, blank=True)
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.assunto
