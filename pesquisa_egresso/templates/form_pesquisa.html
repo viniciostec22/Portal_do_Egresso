@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static '/objetivos/css/style-objetivos.css' %}">
+
+<style>
+    .container {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .row {
+        display: block;
+    }
+
+    .col-md-3 .col-form-label {
+        display: none;
+    }
+</style>
+{% endblock head %}
+{% block title %}Pesquisa Egressos{% endblock title %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{message.tags}} alert-dismissible fade show ">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+<form method="POST" action="{% url 'enviar_pesquisa' %}">
+    {% csrf_token %}
+
+    <!-- Aqui você pode adicionar os campos do formulário individualmente ou usar loops para renderizá-los -->
+    <div class="container">
+        {% bootstrap_form form layout='horizontal' %}
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+{% endblock content %}

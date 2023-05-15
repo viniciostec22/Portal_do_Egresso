@@ -12,12 +12,7 @@ from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from django.core.mail import send_mail
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
-from django.core.mail import EmailMessage
-from django.core.mail import EmailMessage, get_connection
+
 
 
 def Home(request):
@@ -93,49 +88,6 @@ def Home(request):
           return redirect('home')
 
 
-
-def enviar_mensagem(request):
-    if request.method == 'POST':
-        assunto = request.POST.get('assunto')
-        mensagem = request.POST.get('mensagem')
-        destinatarios = [contato.email for contato in Contato.objects.all()]
-        
-        nova_mensagem = Mensagem(
-          assunto = assunto,
-          mensagem = mensagem
-        )
-        # Cria o objeto de mensagem
-        msg = MIMEMultipart()
-        msg['From'] = 'vinicios471matheus@outlook.com'
-        msg['Subject'] = assunto
-        msg.attach(MIMEText(mensagem))
-        
-        #Anexa o arquivo se houver
-        arquivo = request.FILES.get('anexo')
-        if arquivo:
-            nome_arquivo = arquivo.name
-            conteudo_arquivo = arquivo.read()
-            part = MIMEApplication(conteudo_arquivo)
-            part.add_header('Content-Disposition', 'attachment', filename=nome_arquivo)
-            msg.attach(part)
-        
-        # Cria o objeto EmailMessage e envia o e-mail
-        email = EmailMessage(
-            subject=assunto,
-            body=mensagem,
-            from_email='vinicios471matheus@outlook.com',
-            to=destinatarios,
-            connection = get_connection()
-
-
-        )
-        email.attach(msg)
-        email.send()
-        nova_mensagem.save()
-        
-        return redirect('enviar-mensagem')
-    return render(request, 'enviar_mensagem.html')
-   
     
 def cursos_do_campus(request, campus_id):
     cursos = Curso.objects.filter(campus__id=campus_id)
