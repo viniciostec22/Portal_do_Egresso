@@ -1,8 +1,17 @@
 from django.db import models
+from django import forms
 
-from Home.models import Endereco
+SEXO_CHOICES = [
+    ('M', 'Masculino'),
+    ('F', 'Feminino'),
+    ('O', 'Outro'),
+]
 
 class Pesquisa(models.Model):
+     
+      
+      
+
     nome_completo = models.CharField(max_length=100)
     telefone = models.CharField(max_length=20)
     endereco = models.CharField(max_length=200, verbose_name='Endereço')
@@ -10,7 +19,7 @@ class Pesquisa(models.Model):
 
     curso = models.CharField(max_length=100)
     ano_conclusao = models.PositiveIntegerField(verbose_name='Ano de Conclusão')
-    sexo = models.CharField(max_length=10)
+    sexo = models.CharField(max_length=1, choices=SEXO_CHOICES)
     idade = models.PositiveIntegerField()
     estado_civil = models.CharField(max_length=20)
     renda_bruta = models.DecimalField(max_digits=10, decimal_places=2)
