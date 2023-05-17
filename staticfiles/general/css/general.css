@@ -1,0 +1,273 @@
+@import url(./root.css);
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+
+/*Barra de navegação*/
+.navbar-collapse{
+  flex-grow: inherit;
+}
+.nav-main{
+  background-color:var(--main-color);
+  color: #fff
+}
+
+.navbar-light .navbar-nav .nav-link{
+  font-size: 18px;
+  color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+  font-size: 18px;
+  transition: 0.5s;
+}
+
+.navbar-light .navbar-brand:hover{
+  color: #fff;
+}
+
+.navbar-light .navbar-brand{
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.brand{
+  font-size: 14px;
+  font-weight: lighter;
+  margin-bottom: 0px;
+}
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link{
+  color: var(--light-color);
+}
+/*Carrossel*/
+/*slaider*/
+.main-slider{
+  height: 80vh;
+}
+
+.carousel-item {
+  height: 80vh;
+}
+.carousel-item img{
+  width: 100%;
+  height: 80vh;
+}
+
+ .carousel-caption {
+  top: 30%;
+}
+
+.carousel-caption h5 {
+  font-size: 50px;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.carousel-caption p {
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: 100px;
+  color: #000;
+}
+.carousel-indicators [data-bs-target]{
+  background-color:red;
+}
+
+/*apresentação*/
+
+#apresentacao{
+  background-color: var(--background-color);
+  
+}
+.left{
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+.left hr{
+  border: solid 3px red;
+  opacity: .50;
+  
+}
+.right{
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+.container-titulo{
+  display: flex;
+  font-size: 36px;
+  font-weight: bolder;
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  margin-bottom: 30px;
+  color: var(--main-color);
+
+}
+.title {
+  text-align: center;
+  margin-top: 30px;
+  
+}
+
+.container-titulo p{
+  margin-bottom: 1px;
+}
+
+.title hr{
+ border: solid 3px var(--differential-color);
+ opacity: .50;
+ margin-top: 1px;
+ width: 50%;
+ text-align: center;
+ margin: 0 auto;
+}
+
+.text{
+  font-size:26px ;
+  font-weight: bold;
+  color: var(--main-color);
+  text-align: end;
+}
+body > div > div > div.container-fluid.depoimentos-form > div.container.text > div{
+  font-size: 12px;
+}
+.text-regular{
+  font-size: 20px;
+  color: var(--main-color);
+  text-align: inherit;
+  font-weight: 600;
+}
+.left img{
+  width: 200px;
+  height: 200px;
+
+}
+/*pesquisa egresso*/
+.pesquisa .row{
+  margin-top: 30px;
+}
+.pesquisa .left h2{
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--main-color);
+  font-weight: bold;
+}
+.pesquisa .left p{
+  text-align: end;
+}
+.pesquisa .right hr{
+  border: solid 3px red;
+  opacity: .50;
+  margin-top: 60px;
+}
+
+.pesquisa .right h3{
+  color: var(--main-color);
+  margin-bottom: 20px;
+}
+.pesquisa .right span{
+  text-transform: uppercase;
+  
+
+  
+}
+
+/*cadastro*/
+
+.cadastro{
+  padding-bottom: 50px;
+  background-color: var(--background-color);
+}
+
+.cadastro .col h1{
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--main-color);
+  text-align: center;
+  margin-top: 30px;
+}
+.cadastro .col p{
+  font-size: 24px;
+  margin-top: 40px;
+  margin: 40px;
+  color: var(--main-color);
+  text-align: justify;
+}
+.cadastro .col form{
+  margin-top: 40px;
+  padding: 30px;
+  background-color: var(--light-color);
+  border-radius: 30px;
+}
+.justify-content-center{
+  margin-top: 15px;
+}
+.cadastro .col .button{
+  background-color: var(--main-color);
+  border: solid 2px var(--main-color);
+  
+}
+.cadastro .col .button:hover{
+  background-color: #fff;
+  border: solid 2px var(--main-color);
+  color: var(--main-color);
+  transition: 0.5s;
+}
+
+/*rodape */
+
+.footer{
+  background-color: var(--main-color);
+  
+  
+ 
+
+}
+
+.footer .container .row div{
+  margin-top: 20px;
+  color: #fff;
+}
+.logo{
+  width: 110px;
+  height: 130px;
+  margin-bottom: 15px;
+}
+.footer .container .row a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 14;
+}
+.copyright a{
+  color: #fff;
+}
+.navbar-light .navbar-toggler{
+  color: #fff;
+  border-color: #fff;
+}
+.navbar-light .navbar-toggler-icon{
+  background-image: url(../../img/menu_bars.png);
+  fill:#fff;
+}
+
+@media only screen and (max-width: 767px) {
+  /*rodape*/
+  .logo{
+    width: 60px;
+    height: 80px;
+    margin-bottom: 15px;
+  }
+
+  .navbar-light .navbar-brand{
+    font-size: 28px;
+  }
+
+
+}

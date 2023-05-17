@@ -1,0 +1,45 @@
+
+.block-empregos .container{
+  justify-content: center;
+  align-items: center;
+  max-width: 70%;
+}
+
+.sobre{
+  text-align: justify;
+  font-size: 16px;
+  word-break: break-word;
+
+}
+
+.justify-content-center a{
+  margin: 30px;
+  background-color: var(--main-color);
+  border-color: solid 2px var(--main-color);
+  color: #fff;
+}
+
+
+.justify-content-center a:hover{
+  background-color: var(--differential-color);
+  border-color: solid 2px var(--main-color);
+  transition: 0.5s;
+  color: #fff;
+}
+
+@media only screen and (max-width: 767px) {
+  .d-flex{
+    display: block !important;
+    width: 100%;
+  }
+
+  .justify-content-center a{
+    margin: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+  #mobile{
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+}

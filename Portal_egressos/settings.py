@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # outras aplicações
     'bootstrap5',
     'django_extensions',
+    'ckeditor',
     
 
 ]
@@ -141,7 +142,13 @@ MESSAGE_TAGS = {
     constants.INFO: 'alert-info',
     constants.WARNING: 'alert-warning',
 }
-
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 800,
+    },
+}
 #Email
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

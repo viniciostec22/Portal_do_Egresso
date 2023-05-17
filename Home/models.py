@@ -2,6 +2,7 @@ import email
 from django.db import models
 from PIL import Image
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class Contato(models.Model):
@@ -29,7 +30,7 @@ class Campi(models.Model):
 
 class Curso(models.Model):
     curso = models.CharField(max_length=50)
-    descricao = models.TextField(null=True)
+    descricao = RichTextField(null=True)
     campus = models.ManyToManyField(Campi, related_name='cursos')
     nivel = models.ForeignKey(Nivel_Curso, on_delete=models.CASCADE, null=True)
 
@@ -44,7 +45,7 @@ class Depoimento(models.Model):
   turma = models.CharField(max_length=20)
   campus = models.ForeignKey(Campi, on_delete=models.DO_NOTHING, null=True)
   curso = models.ForeignKey(Curso, on_delete=models.DO_NOTHING)
-  depoimento = models.TextField()
+  depoimento = RichTextField()
   autorizacao_publicacao = models.BooleanField(default=False)
   aceite_politica_privacidade = models.BooleanField(default=False)
   aprovado = models.BooleanField(default=False)
@@ -74,17 +75,17 @@ class Slaider(models.Model):
   
 class Apresentacao(models.Model):
   titulo = models.CharField(max_length=15)
-  texto_esquerdo = models.TextField(max_length=40, verbose_name="Texto esquerda")
-  texto_direita = models.TextField(verbose_name="texto direita")
+  texto_esquerdo =RichTextField(max_length=40, verbose_name="Texto esquerda")
+  texto_direita = RichTextField(verbose_name="texto direita")
     
   def __str__(self) -> str:
     return self.titulo
   
 class Pesquisa_Egresso(models.Model):
   titulo = models.CharField(max_length=30)
-  texto = models.TextField(verbose_name="texto")
+  texto = RichTextField(verbose_name="texto")
   subtitulo=models.CharField(max_length=30, verbose_name="Subtitulo")
-  texto_direita = models.TextField(verbose_name="texto direita")
+  texto_direita = RichTextField(verbose_name="texto direita")
   def __str__(self) -> str:
     return self.titulo
   
@@ -105,7 +106,7 @@ class Rodape_servico(models.Model):
   def __str__(self) -> str:
     return self.servicos
 class Endereco(models.Model):
-  endereco = models.TextField(verbose_name="Endereço")
+  endereco = RichTextField(verbose_name="Endereço")
   def __str__(self) -> str:
     return self.endereco
   
@@ -113,13 +114,13 @@ class Endereco(models.Model):
   
 class Objetivos(models.Model):
   titulo = models.CharField(max_length=40, verbose_name="Titulo pagina de Objetivo")
-  texto = models.TextField(verbose_name="Texto da descrição do objetivo")
+  texto = RichTextField(verbose_name="Texto da descrição do objetivo")
   def __str__(self) -> str:
     return self.titulo
   
 class Epregos_cerreira(models.Model):
   titulo = models.CharField(max_length=40, verbose_name="Titulo pagina Empregos e carreiras")
-  texto = models.TextField(verbose_name="Texto da descrição ")
+  texto = RichTextField(verbose_name="Texto da descrição ")
   def __str__(self) -> str:
     return self.titulo
   
@@ -136,7 +137,7 @@ class Politica(models.Model):
       
 class Mensagem(models.Model):
     assunto = models.CharField(max_length=255)
-    corpo = models.TextField()
+    corpo = RichTextField()
     anexo = models.FileField(upload_to='anexos/', null=True, blank=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
     

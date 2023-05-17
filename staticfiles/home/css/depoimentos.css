@@ -1,0 +1,190 @@
+@import url(../../general/css/root.css);
+/*filtro*/
+.filtro{
+  margin-bottom: 30px;
+  height: 15vh;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+ 
+}
+.responsivo{
+  display: none;
+}
+.filtro label{
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 18px;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.filtro form{
+  display: inline-flex;
+  color: var(--text-color);
+  width: 50%;
+}
+.select{
+  
+  position: relative;
+  width: 50%;
+}
+.button i{
+  font-size: 20px;
+  
+}
+.button{
+  background-color: var(--main-color);
+  border: solid 2px var(--main-color);
+  color: #fff;
+  margin-left: 10px;
+  
+}
+.button:hover{
+  background-color: var(--differential-color);
+  border: solid 2px var(--differential-color);
+  color: #fff;
+  transition: 0.5s;
+}
+
+
+/*Depoimentos*/
+.depoimentos{
+  align-items: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+.depoimentos .col-sm-6{
+  margin-bottom: 30px;
+  
+}
+.card{
+  display: flex;
+  padding-right: 15px;
+  align-items: center;
+  flex-direction: row;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  height: 35vh;
+  
+ 
+}
+
+.foto img{
+  border-radius: 100px;
+  height: 15vh;
+  width: 15vh;
+  margin: 15px;
+  display: block;
+  
+}
+.nome{
+  margin-top: 15px;
+  font-size: 26;
+}
+
+
+.curso{
+  color: #696969
+}
+.caixa-de-texto{
+  font-size: 14px;
+}
+.depoimentos .button{
+  margin-bottom: 30px;
+  
+}
+.btn-center {
+  display: block;
+  margin: auto;
+}
+/*paginação*/
+.page-item.active .page-link{
+  background-color: var(--differential-color);
+  border-color: var(--differential-color);
+}
+
+.page-link {
+  color: var(--main-color);
+  
+}
+.page-link:hover{
+  background-color: var(--main-color);
+  color: #fff;
+}
+/*novo depoimento*/
+.depoimentos-form{
+  background-color:var(--light-color) ;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  
+}
+
+.form-depoimentos{
+  background-color: var(--background-color);
+  width: 50%;
+  border-radius: 20px;
+  
+}
+
+.form-depoimentos form{
+  padding: 30px;
+  
+}
+.depoimentos-form .text{
+  margin-bottom: 20px;
+}
+.depoimentos-form .text p{
+  font-size: 16px;
+}
+.depoimentos-form h2{
+  text-align: center;
+  font-size: 42px;
+}
+.depoimentos-form p{
+  text-align: center;
+  
+}
+.form-depoimentos .button{
+  margin-top: 15px;
+}
+.form-depoimentos form .form-check{
+  margin-top: 20px;
+}
+.form-depoimentos form .form-check a{
+  text-decoration: none;
+}
+
+/*responsivo*/
+
+@media only screen and (max-width: 767px) {
+  .form-depoimentos{
+    width: 100%;
+  }
+
+  .filtro {
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+  }
+  
+  .filtro form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .filtro .responsivo {
+    margin-top: 10px;
+    color: var(--text-color);
+  }
+  .responsivo {
+    display: block;
+    margin: 10px;
+  }
+  .filtro label{
+    display: none;
+  }
+}
