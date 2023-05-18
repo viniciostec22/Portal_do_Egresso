@@ -10,13 +10,13 @@
  <div class="container-fluid block-objetivos">
   <div class="container container-titulo">
     <div class="title">
-      <p >{{objetivo.titulo}}</p>
+      <p >{{objetivo.titulo|safe}}</p>
       <hr class="bg-hr">
     </div>
   </div>
   <div class="container">
     <p id="objetivo">
-     {{objetivo.texto}}
+     {{objetivo.texto|safe}}
     </p>
   </div>
  </div>

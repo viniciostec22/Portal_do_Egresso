@@ -1,61 +1,24 @@
 from django import forms
 from .models import Pesquisa
-AVALIACAO_CURSO_CHOICES = [
-    ('ruim', 'Ruim'),
-    ('media', 'Média'),
-    ('bom', 'Bom'),
-    ('otimo', 'Ótimo'),
-]
-AVALIACAO_APRENDIZADO_CHOICES = [
-    ('ruim', 'Ruim'),
-    ('media', 'Média'),
-    ('bom', 'Bom'),
-    ('otimo', 'Ótimo'),
-]
-SEXO_CHOICES = [
-    ('M', 'Masculino'),
-    ('F', 'Feminino'),
-]
 
-ESTADO_CIVIL_CHOICES = [
-    ('solteiro', 'Solteiro'),
-    ('casado', 'Casado'),
-    ('divorciado', 'Divorciado'),
-    ('viuvo', 'Viúvo'),
-]
 class PesquisaForm(forms.ModelForm):
+    telefone = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class': 'telefone-mask'}))
+
     class Meta:
         model = Pesquisa
         fields = '__all__'
         widgets = {
             'avaliacao_curso': forms.RadioSelect(),
             'avaliacao_aprendizado': forms.RadioSelect(),
+            'sexo':forms.RadioSelect(),
+            'estado_civil':forms.RadioSelect()
         }
-# class PesquisaForm(forms.ModelForm):
-    
-    # avaliacao_curso = forms.MultipleChoiceField(
-    #     choices=AVALIACAO_CURSO_CHOICES,
-    #     widget=forms.RadioSelect,
-    #     required=False  # O campo não é obrigatório
-    # )
-    # avaliacao_aprendizado = forms.MultipleChoiceField(
-    #     choices=AVALIACAO_APRENDIZADO_CHOICES,
-    #     widget=forms.RadioSelect,
-    #     required=False
-    # )
-    
-    # sexo = forms.MultipleChoiceField(
-    #     choices=SEXO_CHOICES,
-    #     widget=forms.RadioSelect,
-    #     required=False
-    # )
-    
-    # estado_civil = forms.MultipleChoiceField(
-    #     choices=ESTADO_CIVIL_CHOICES,
-    #     widget=forms.RadioSelect,
-    #     required=False
-    # )
-
-    # class Meta:
-    #     model = Pesquisa
-    #     fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Remover a opção vazia dos campos RadioSelect
+        self.fields['avaliacao_curso'].choices = [('ruim', 'Ruim'), ('media', 'Média'),('bom', 'Bom'), ('otimo', 'Otimo')]
+        self.fields['avaliacao_aprendizado'].choices = [('ruim', 'Ruim'), ('media', 'Média'),('bom', 'Bom'), ('otimo', 'Otimo')]
+        self.fields['sexo'].choices = [('M', 'Masculino'), ('F', 'Feminino')]
+        self.fields['estado_civil'].choices = [('solteiro', 'Solteiro'), ('casado', 'Casado'),('divorciado', 'Divorciado'),('viuvo', 'Viúvo'),]
+   

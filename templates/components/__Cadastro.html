@@ -24,26 +24,9 @@
           </div>
           <div class="mb-3">
             <label for="text" class="form-label">Telefone</label>
-            <input type="tel" class="form-control" id="Telefone" name="telefone" required>
+            <input type="tel" class="form-control telefone-mask" id="id_telefone" name="telefone" required placeholder="Tel">
           </div>
-          {% comment %} <div class="mb-3">
-            <label  class="form-label">Campus:</label>
-            <select class="form-control form-select  " name="campus" id="campus">
-              <option selected>Campus</option>
-              {% for campus in campi %}
-              <option value="{{campus.id}}">{{campus.nome_campus}}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Curso:</label>
-            <select class="form-control form-select " name="curso" id="curso">
-              <option selected>Curso</option>
-              {% for curso in cursos %}
-              <option value="{{curso.id}}">{{curso.nivel}} - {{curso.curso}}</option>
-              {% endfor %}
-            </select>
-          </div> {% endcomment %}
+          
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" name="aceito" required>
             <label class="form-check-label" for="flexCheckChecked">
@@ -65,3 +48,9 @@
   </div>
 </div>
 
+<script src="{% static 'js/inputmask/jquery.inputmask.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('.telefone-mask').inputmask('(99) 9 9999-9999');
+    });
+</script>

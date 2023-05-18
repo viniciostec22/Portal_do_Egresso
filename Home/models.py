@@ -75,7 +75,7 @@ class Slaider(models.Model):
   
 class Apresentacao(models.Model):
   titulo = models.CharField(max_length=15)
-  texto_esquerdo =RichTextField(max_length=40, verbose_name="Texto esquerda")
+  texto_esquerdo =RichTextField( verbose_name="Texto esquerda")
   texto_direita = RichTextField(verbose_name="texto direita")
     
   def __str__(self) -> str:
@@ -126,13 +126,12 @@ class Epregos_cerreira(models.Model):
   
 class Politica(models.Model):
     titulo = models.CharField(max_length=100)
-    arquivo = models.FileField(upload_to='politicas/')
+    politica = RichTextField(verbose_name='Politica de Privacidade', blank=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.titulo
-    def get_absolute_url(self):
-        return "/media/" + str(self.arquivo)
+    
       
       
 class Mensagem(models.Model):

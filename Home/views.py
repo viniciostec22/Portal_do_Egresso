@@ -86,8 +86,6 @@ def Home(request):
           novo_contato.save()
           messages.add_message(request, constants.SUCCESS, 'Contato enviado com sucesso!!')
           return redirect('home')
-
-
     
 def cursos_do_campus(request, campus_id):
     cursos = Curso.objects.filter(campus__id=campus_id)
@@ -121,8 +119,7 @@ def Depoimentos(request):
                                                 'servicos':servicos,
                                                 'endereco':endereco,
                                                 })
-  
-    
+     
 def add_depoimentos(request):
   if request.method =='POST':
       nome = request.POST.get('nome')
@@ -184,17 +181,12 @@ def add_depoimentos(request):
       messages.add_message(request, constants.SUCCESS, 'Depoimento enviado com sucesso!!')
       # Redireciona o usuário para uma página de sucesso ou para a página de depoimentos
       return redirect('depoimentos')  
-    
-        
+            
 def politica_privacidade(request):
-  politica = Politica.objects.get(id=1) # obtém o primeiro objeto da model Politica
-  pdf_path = politica.arquivo.path
-  with open(pdf_path, 'rb') as pdf_file:
-        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
-        response['Content-Disposition'] = 'inline; filename=politica.pdf'
-        return response
-  
-  #return render(request, 'politica.html', {'politica': politica})
+
+  if request.method == "GET":
+      privacidade = Politica.objects.first()
+      return render(request, 'politica_privacidade.html',{'privacidade':privacidade})
   
 def objetivos(request):
   objetivo = Objetivos.objects.all().first

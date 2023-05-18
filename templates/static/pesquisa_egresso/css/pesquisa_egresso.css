@@ -1,5 +1,21 @@
 @import url(../../general/css/root.css);
 
+.container.title{
+    text-align: center;
+    max-width: 70%;
+    margin-top: 0;
+    background-color: var(--background-color);
+    border-radius: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    
+    height: 15vh;
+}
+.title_pesquisa{
+    margin-bottom: 20px;
+}
 .form-container {
     margin-top: 30px;
     margin-bottom: 20px;
@@ -10,7 +26,7 @@
 .form-container form{
     background-color: var(--background-color);
     width: 70%;
-    border-radius: 15px;
+    border-radius: 20px;
    
 }
 textarea {
@@ -53,3 +69,35 @@ input[type="radio"].django-forms-avaliacao_aprendizado_choices:first-child {
   outline: none;
   border: none;
 }
+
+#id_sexo div, 
+#id_estado_civil div,
+#id_avaliacao_aprendizado div,
+#id_avaliacao_curso div{
+    display: inline;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.django-ckeditor-widget{
+    width: 100%;
+}
+.col-md-9 {
+    display: flex;
+    align-items: center;
+  }
+
+
+@media only screen and (max-width: 767px) {
+    .form-container form{
+        width: 100%;       
+    }
+    .container.title{
+        max-width: 100%;  
+    }
+    #id_estado_civil div{
+        display: flex;
+    }
+    
+  }
+  

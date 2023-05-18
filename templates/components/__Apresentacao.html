@@ -2,7 +2,7 @@
 <div id="apresentacao">
   <div class="container container-titulo">
     <div class="title">
-      <p >{{apresentacao.titulo}}</p>
+      <p >{{apresentacao.titulo|safe}}</p>
       <hr class="bg-hr">
     </div>
   </div>
@@ -11,14 +11,20 @@
       
       <div class="col left">
        
-        <p class="text">{{apresentacao.texto_esquerdo}}</p>
+        <div class="container">
+          <p class="text">{{apresentacao.texto_esquerdo|safe}}</p>
+        </div>
         <hr class="bg-hr">
+       <div class="container logo">
         <img src="{% static 'img/marca-if-baiano-bom-jesus-da-lapa.svg' %}" alt="">
+       </div>
       </div>
       <div class="col right">
-        <p class="text-regular">
-         {{apresentacao.texto_direita}}
-        </p>
+        <div class="container">
+          <p class="text-regular">
+            {{apresentacao.texto_direita|safe}}
+           </p>
+        </div>
       </div>
     </div>
   </div>

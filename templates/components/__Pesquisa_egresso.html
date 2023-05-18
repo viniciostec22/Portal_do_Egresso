@@ -2,17 +2,19 @@
 <div class="container pesquisa">
   <div class="row">
     <div class="col left">
-      <h2>{{pesquisa_egresso.titulo}}</h2>
-      <p>Caro(a),</p>
+      <div class="container">
+        <h2>{{pesquisa_egresso.titulo|safe}}</h2>
+      </div>
+     
         <p>
-          {{pesquisa_egresso.texto}}
+          {{pesquisa_egresso.texto|safe}}
         </p>
       
     </div>
     <div class="col right">
       <hr class="bg-hr">
-      <h3>{{pesquisa_egresso.subtitulo }}</h3>
-      <p>{{pesquisa_egresso.texto_direita}}</p>
+      <h3>{{pesquisa_egresso.subtitulo|safe }}</h3>
+      <p>{{pesquisa_egresso.texto_direita|safe}}</p>
     </div>
   </div>
 </div>

@@ -18,6 +18,9 @@
     {% endif %}
 <div class="container-fluid">
  <div class="container form-container">
+    <div class="container title d-flex align-items-center justify-content-center">
+        <h1 class="title_pesquisa">{{titulo.titulo|safe}}</h1>
+    </div>
     <form method="POST" action="{% url 'enviar_pesquisa' %}">
         {% csrf_token %}
         <div class="container">
@@ -30,3 +33,13 @@
  </div>
 </div>
 {% endblock content %}
+
+
+{% block scripts %}
+<script src="{% static 'js/inputmask/jquery.inputmask.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('.telefone-mask').inputmask('(99) 9 9999-9999');
+    });
+</script>
+{% endblock scripts %}
