@@ -212,7 +212,6 @@ def empregos_carrera(request):
                                              'empregos_carrera':empregos_carrera,
                                              })
 
-
 def contato(request):
   links = Rodape_links.objects.all()
   servicos = Rodape_servico.objects.all()
