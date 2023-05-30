@@ -12,6 +12,7 @@ from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.core.mail import send_mail
 
 
 
@@ -210,3 +211,30 @@ def empregos_carrera(request):
                                              'endereco':endereco,
                                              'empregos_carrera':empregos_carrera,
                                              })
+
+
+def contato(request):
+  links = Rodape_links.objects.all()
+  servicos = Rodape_servico.objects.all()
+  endereco = Endereco.objects.all().first()
+  if request.method == 'GET':
+    return render(request, 'contato.html',{'links':links,'servicos':servicos,'endereco':endereco,})
+  
+  elif request.method == 'POST':
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    assunto = request.POST.get('assunto')
+    message = request.POST.get('message')
+
+    # Envie o e-mail usando a função send_mail do Django
+    send_mail(
+        assunto,
+        f'Nome: {name}\nE-mail: {email}\nMensagem: {message}',
+        settings.DEFAULT_FROM_EMAIL,  # E-mail remetente
+        [settings.DEFAULT_FROM_EMAIL],  # Lista de destinatários
+        fail_silently=False,
+    )
+
+     # Redirecione para uma página de confirmação ou exiba uma mensagem de sucesso
+    messages.add_message(request, constants.SUCCESS, 'Mensagem enviada com Sucesso!!')
+    return redirect('contato')

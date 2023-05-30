@@ -1,0 +1,32 @@
+/* contact.css */
+@import url(../../general/css/root.css);
+.container {
+  margin-top: 50px;
+}
+
+.contact-form {
+  background-color: #f7f7f7;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.contact-form h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.btn-primary {
+  width: 100%;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+.btn-primary:hover{
+  background-color: var(--differential-color);
+  border-color: var(--differential-color);
+  transition: 0.5s;  
+}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'home/css/contact.css' %}">
+{% endblock head %}
+
+{% block title %}Fale-conosco{% endblock title %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert {{message.tags}} alert-dismissible fade show ">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endfor %}
+{% endif %}  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1>Fale Conosco</h1>
+        <form action="{% url 'contato'%}" method="POST" class="contact-form">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="assunto" class="form-label">Assunto</label>
+            <input type="text" class="form-control" id="assunto" name="assunto" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensagem</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
