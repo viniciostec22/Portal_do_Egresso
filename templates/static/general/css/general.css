@@ -256,6 +256,15 @@ body > div > div > div.container-fluid.depoimentos-form > div.container.text > d
   background-image: url(../../img/menu_bars.png);
   fill:#fff;
 }
+.carousel {
+  max-width: 100%; /* ou um valor específico, como 800px */
+  height: auto;
+}
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
 
 @media only screen and (max-width: 767px) {
   /*rodape*/
@@ -282,4 +291,12 @@ body > div > div > div.container-fluid.depoimentos-form > div.container.text > d
     margin-top: 60px;
     margin-bottom: 60px;
   }
+  .carousel-caption {
+    font-size: 14px;
+  }
+  
+  .carousel-item {
+    height: 150px; /* ajuste conforme necessário */
+  }
+
 }
