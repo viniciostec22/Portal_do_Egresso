@@ -56,6 +56,10 @@ class Depoimento(models.Model):
   
 class Slaider(models.Model):
     img = models.ImageField(upload_to='img/')
+    btn = models.CharField(max_length=50, verbose_name='Nome do Botão', blank=True, null=True)
+    url_btn = models.CharField(max_length=200, verbose_name='Link do Banner',blank=True, null=True)
+    titulo_banner = RichTextField(verbose_name='Titulo Banner',blank=True, null=True)
+    texto_banner = RichTextField(verbose_name='Paragrafo Banner',blank=True, null=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

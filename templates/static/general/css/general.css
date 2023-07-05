@@ -69,6 +69,18 @@ html, body {
   margin-bottom: 30px;
   color: black;
 }
+.btn_banner{
+  position: absolute;
+  font-size: 18px;
+  top: 190px;
+  right: 50px;
+  width: 200px;
+
+}
+.btn-primary:hover{
+  background-color: var(--differential-colorr);
+  border-color: var(--differential-colorr);
+}
 
 .carousel-caption p {
   font-size: 22px;

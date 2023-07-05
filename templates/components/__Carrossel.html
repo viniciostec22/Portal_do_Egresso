@@ -5,7 +5,6 @@
   {{message}}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-
 {% endfor %}
 {% endif %}
 <div>
@@ -17,8 +16,15 @@
       <a href="{% url 'enviar_pesquisa' %}">
         <img src="{{img}}" class="d-block w-100" alt="Slide {{ forloop.counter }}">
         <div class="carousel-caption d-none d-md-block">
-          <h5></h5>
-          <p></p>
+          {% if img.btn %}
+            <a href="{{ img.url_btn }}" class="btn btn-primary btn_banner">{{ img.btn}}</a>
+          {% endif %}
+          {% if img.h5 %}
+            <h5>{{ img.h5 }}</h5>
+          {% endif %}
+          {% if img.p %}
+            <p>{{ img.p }}</p>
+          {% endif %}
         </div>
       </a>
      </div>
