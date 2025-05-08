@@ -2,9 +2,9 @@
 from pathlib import Path
 import os
 from django.contrib.messages import constants
-from decouple import config 
+from decouple import AutoConfig
 
-
+config = AutoConfig()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'pesquisa_egresso',
    
     # outras aplicações
-    'bootstrap5',
+    'django_bootstrap5',
     'django_extensions',
     'ckeditor',
     
